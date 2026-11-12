@@ -1,0 +1,20 @@
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+
+# Raw datasets
+data/raw/stock_prices/*
+data/raw/*.csv
+
+# Processed datasets
+data/processed/*.parquet
+
+# Temporary files
+*.log
+.DS_Store
