@@ -1,0 +1,242 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+    Dashboard | Forecasting Analytics
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- WELCOME SECTION -->
+    <div class="welcome-section">
+
+        <div>
+            <h3>Welcome to Forecasting Dashboard</h3>
+
+            <p>
+                Monitor stock market data and multi-horizon
+                forecasting results.
+            </p>
+        </div>
+
+        <div class="model-status">
+            <span class="status-dot"></span>
+            Demo Environment
+        </div>
+
+    </div>
+
+
+    <!-- STOCK SELECTION -->
+    <div class="panel stock-selector">
+
+        <div>
+            <label>Select Stock Ticker</label>
+
+            <select class="form-select" id="tickerSelect">
+
+                {% for ticker in tickers %}
+
+                <option value="{{ ticker }}"
+                    {% if ticker == "BBCA" %}selected{% endif %}>
+
+                    {{ ticker }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+        </div>
+
+
+        <div>
+            <label>Forecast Model</label>
+
+            <div class="selection-value">
+                Transformer
+            </div>
+        </div>
+
+
+        <div>
+            <label>Sequence Length</label>
+
+            <div class="selection-value">
+                60 Days
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- MODEL OVERVIEW -->
+    <div class="section-heading">
+        <h5>Model Overview</h5>
+    </div>
+
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+
+            <div class="card-label">
+                Total Stocks
+            </div>
+
+            <div class="card-value">
+                24
+            </div>
+
+            <div class="card-description">
+                Indonesian Stock Market
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="card-label">
+                Input Features
+            </div>
+
+            <div class="card-value">
+                27
+            </div>
+
+            <div class="card-description">
+                Engineered Features
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="card-label">
+                Forecast Horizons
+            </div>
+
+            <div class="card-value">
+                4
+            </div>
+
+            <div class="card-description">
+                D1, D5, D10, D20
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="card-label">
+                Sequence Length
+            </div>
+
+            <div class="card-value">
+                60
+            </div>
+
+            <div class="card-description">
+                Historical Trading Days
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MULTI-HORIZON FORECASTING -->
+    <div class="section-heading">
+
+        <h5>Multi-Horizon Forecasting</h5>
+
+        <small>Prediction results</small>
+
+    </div>
+
+
+    <div class="forecast-grid">
+
+        {% for horizon in ["D1", "D5", "D10", "D20"] %}
+
+        <div class="forecast-card">
+
+            <div class="forecast-horizon">
+                {{ horizon }}
+            </div>
+
+            <div class="forecast-value">
+                --
+            </div>
+
+            <div class="forecast-description">
+                Waiting for model inference
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- HISTORICAL PRICE & FORECAST -->
+    <div class="section-heading">
+
+        <h5>Historical Price & Forecast</h5>
+
+    </div>
+
+
+    <div class="panel chart-panel">
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                ⌁
+            </div>
+
+            <h6>Forecasting Visualization</h6>
+
+            <p>
+                Historical price and prediction charts
+                will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- EXPLAINABLE AI -->
+    <div class="section-heading">
+
+        <h5>Explainable AI - Feature Contribution</h5>
+
+    </div>
+
+
+    <div class="panel xai-panel">
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                ◉
+            </div>
+
+            <h6>Feature Importance Analysis</h6>
+
+            <p>
+                SHAP feature contribution visualization
+                will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+{% endblock %}

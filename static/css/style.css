@@ -388,3 +388,92 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+/* SIDEBAR PROFILE */
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 5px 22px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.profile-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.5);
+}
+
+.profile-info h6 {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 4px;
+}
+
+.profile-info small {
+    color: #aebbd0;
+    font-size: 11px;
+}
+
+
+/* =========================================
+   HISTORICAL MARKET DATA TABLE
+========================================= */
+
+#stockTable {
+    width: 100%;
+    font-size: 12px;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+/* Table Header */
+#stockTable thead th {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: right;
+    padding: 10px 14px;
+    background-color: #f1f5f9;
+    color: #334155;
+    border-bottom: 1px solid #dbe2ea;
+}
+
+/* Table Body */
+#stockTable tbody td {
+    font-size: 12px;
+    text-align: right;
+    padding: 9px 14px;
+    color: #334155;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Zebra Rows */
+#stockTable tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+#stockTable tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Hover Effect */
+#stockTable tbody tr:hover {
+    background-color: #eaf2ff;
+}
+
+/* Remove Bootstrap Default Background */
+#stockTable.table {
+    --bs-table-bg: transparent;
+    --bs-table-hover-bg: #eaf2ff;
+}
+
+/* Smooth Transition */
+#stockTable tbody tr {
+    transition: background-color 0.15s ease;
+}

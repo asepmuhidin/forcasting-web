@@ -1,0 +1,102 @@
+
+<!-- LEFT SIDEBAR -->
+<aside class="sidebar">
+
+    <!-- USER PROFILE -->
+    <div class="sidebar-profile">
+
+        <img
+            src="{{ url_for('static', filename='images/profile.jpg') }}"
+            alt="Asep Muhidin"
+            class="profile-photo"
+        >
+
+        <div class="profile-info">
+            <h6>Asep Muhidin</h6>
+            <small>Researcher</small>
+        </div>
+
+    </div>
+
+
+    <!-- BRAND -->
+    <div class="brand">
+
+        <div class="brand-icon">
+            F
+        </div>
+
+        <div>
+            <h5>Forecasting</h5>
+            <small>Analytics Platform</small>
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <div class="menu-label">
+        MAIN MENU
+    </div>
+
+    <nav class="sidebar-menu">
+
+        <a href="{{ url_for('dashboard') }}"
+           class="menu-item {% if active_page == 'dashboard' %}active{% endif %}">
+
+            <span>▦</span>
+            Dashboard
+
+        </a>
+
+
+        <a href="{{ url_for('stock_explorer') }}"
+           class="menu-item {% if active_page == 'stock_explorer' %}active{% endif %}">
+
+            <span>◈</span>
+            Stock Explorer
+
+        </a>
+
+
+        <a href="#"
+           class="menu-item">
+
+            <span>⌁</span>
+            Forecasting Results
+
+        </a>
+
+
+        <a href="#"
+           class="menu-item">
+
+            <span>◉</span>
+            Feature Importance
+
+        </a>
+
+
+        <a href="#"
+           class="menu-item">
+
+            <span>⚙</span>
+            Model Information
+
+        </a>
+
+    </nav>
+
+
+    <!-- SIDEBAR FOOTER -->
+    <div class="sidebar-footer">
+
+        <small>FORECASTING RESEARCH</small>
+
+        <p>
+            Transformer-Based Model
+        </p>
+
+    </div>
+
+</aside>

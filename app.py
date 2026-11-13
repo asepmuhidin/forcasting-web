@@ -1,5 +1,10 @@
 
-from flask import Flask, render_template, jsonify, request
+from flask import (
+    Flask,
+    render_template,
+    jsonify,
+    request
+)
 
 from services.stock_service import (
     TICKERS,
@@ -22,28 +27,34 @@ app.config["JSON_SORT_KEYS"] = False
 
 @app.route("/")
 def dashboard():
+
     return render_template(
-        "dashboard.html",
-        tickers=TICKERS
+        "pages/dashboard.html",
+
+        tickers=TICKERS,
+
+        page_title="Dashboard",
+        active_page="dashboard"
     )
 
 
 # =========================================================
 # STOCK EXPLORER PAGE
 # =========================================================
-
 @app.route("/stock-explorer")
 def stock_explorer():
-    return render_template(
-        "stock_explorer.html",
-        tickers=TICKERS
-    )
 
+    return render_template(
+        "pages/stock_explorer.html",
+        tickers=TICKERS,
+        selected_ticker=request.args.get("ticker", "BBCA").upper(),
+        page_title="Stock Explorer",
+        active_page="stock_explorer"
+    )
 
 # =========================================================
 # STOCK DATA API
 # =========================================================
-
 @app.route("/api/stocks/<ticker>", methods=["GET"])
 def stock_api(ticker):
 
@@ -51,7 +62,6 @@ def stock_api(ticker):
 
     try:
 
-        # Load historical stock data
         data = load_stock_data(
             ticker=ticker,
             period=period
@@ -86,8 +96,7 @@ def stock_api(ticker):
             "success": False,
             "message": "Internal server error."
         }), 500
-
-
+        
 # =========================================================
 # HEALTH CHECK
 # =========================================================
@@ -109,19 +118,27 @@ def health_check():
 @app.errorhandler(404)
 def page_not_found(error):
 
-    return jsonify({
-        "success": False,
-        "message": "Page not found."
-    }), 404
+    if request.path.startswith("/api/"):
+
+        return jsonify({
+            "success": False,
+            "message": "API endpoint not found."
+        }), 404
+
+    return "Page not found.", 404
 
 
 @app.errorhandler(500)
 def internal_server_error(error):
 
-    return jsonify({
-        "success": False,
-        "message": "Internal server error."
-    }), 500
+    if request.path.startswith("/api/"):
+
+        return jsonify({
+            "success": False,
+            "message": "Internal server error."
+        }), 500
+
+    return "Internal Server Error", 500
 
 
 # =========================================================
